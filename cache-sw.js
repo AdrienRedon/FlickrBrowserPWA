@@ -8,6 +8,7 @@ var urlsToCache = [
   '/index.html',
   '/manifest.json',
   '/cache.js',
+  '/dist/build.js',
   '/serviceworker-cache-polyfill.js',
 ];
 
