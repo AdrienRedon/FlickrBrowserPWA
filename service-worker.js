@@ -18,7 +18,7 @@ self.addEventListener('install', function(event) {
   // perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
+      .then(function (cache) {
         console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
@@ -33,7 +33,14 @@ self.addEventListener('fetch', function(event) {
     caches
       .match(event.request)
       .then(function (res) {
-        return res || fetch(event.request);
+        return res || fetch(event.request)
+          .then(function (res) {
+            caches.open(CACHE_NAME)
+              .then(function (cache) {
+                cache.put(event.request, res.clone());
+                return res;
+              })
+          });
       })
   );
 
