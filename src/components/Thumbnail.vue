@@ -1,6 +1,6 @@
 <template>
   <div @click="show()">
-    <img :src="url">
+    <img :src="url" alt="Thumbnail from Flickr">
     <p>{{ pic.title }}</p>
   </div>
 </template>
